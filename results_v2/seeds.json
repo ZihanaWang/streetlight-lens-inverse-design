@@ -1,0 +1,25 @@
+{
+ "data_splits": {
+  "forward train/test": "train_test_split(CleanedData index, test_size=0.2, random_state=42)",
+  "nested CV outer folds": "RepeatedKFold(n_splits=5, n_repeats=1, random_state=42)",
+  "inverse held-out": "top 30 ErrorFree designs by composite score, no randomness",
+  "inverse train/test": "train_test_split(remaining 336, test_size=0.2, random_state=42)",
+  "validation split inside every network": "train_test_split(fitting rows, test_size=0.2, random_state=<network seed>)"
+ },
+ "network_seeds": {
+  "network seed rule": "fit_dnn(seed) gives member k the seed seed*10+k. seed_all seeds python, numpy and tensorflow",
+  "forward configuration selection": "select_cfg seed 1000, inner KFold(3, shuffle, random_state=1000), inner fold j uses fit_dnn seed 1000+j",
+  "final forward model": "fit_dnn seed 7 (members 70-74)",
+  "outer fold f, single network": "fit_dnn seed 500+f",
+  "outer fold f, configuration selection": "select_cfg seed 2000+10f",
+  "outer fold f, revised DNN": "fit_dnn seed 600+f",
+  "inverse training k (k=0..4)": "fit_member seed 100+k"
+ },
+ "other_seeds": {
+  "Gaussian processes": "random_state=0, 2 optimizer restarts",
+  "random forest, gradient boosting": "random_state=0",
+  "Sobol samples and bootstrap": "SALib sobol sample N=4096 seed=1, analyze seed=1",
+  "non-uniqueness search": "scipy qmc.LatinHypercube(d=4, seed=3), 200,000 points"
+ },
+ "note": "tensorflow is not bit-reproducible across machines, so the last digit can differ"
+}

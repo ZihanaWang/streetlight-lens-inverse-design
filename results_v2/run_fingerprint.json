@@ -1,0 +1,84 @@
+{
+ "data_sha256": "31a39ed557a018156b992716f18d2875f3f9c246aabebbc82878e96503be9bd9",
+ "thresholds": {
+  "Average Luminance": 0.75,
+  "Overall Uniformity of Luminance": 0.4,
+  "Longitudinal Uniformity of Luminance": 0.6
+ },
+ "bounds": [
+  [
+   9.7,
+   10.7
+  ],
+  [
+   6.0,
+   20.0
+  ],
+  [
+   6.0,
+   7.0
+  ],
+  [
+   50.0,
+   63.0
+  ]
+ ],
+ "dnn_cfg": {
+  "A: 64-32-16 ReLU": {
+   "widths": [
+    64,
+    32,
+    16
+   ],
+   "act": "relu",
+   "wd": 0.0,
+   "lr": 0.001,
+   "n": 1
+  },
+  "B: 64-32-16 ReLU + L2": {
+   "widths": [
+    64,
+    32,
+    16
+   ],
+   "act": "relu",
+   "wd": 0.0001,
+   "lr": 0.001,
+   "n": 1
+  },
+  "C: ensemble of 5 x B": {
+   "widths": [
+    64,
+    32,
+    16
+   ],
+   "act": "relu",
+   "wd": 0.0001,
+   "lr": 0.001,
+   "n": 5
+  }
+ },
+ "n_forward": 496,
+ "n_inverse": 366,
+ "split_seed": 42,
+ "inverse": {
+  "cfg": {
+   "widths": [
+    64,
+    32,
+    16
+   ],
+   "act": "relu",
+   "wd": 0.0,
+   "lr": 0.001
+  },
+  "dropout": 0.3,
+  "trainings": 5,
+  "seed0": 100,
+  "patience_selection_seed": 4000,
+  "patience_candidates": [
+   10,
+   50
+  ]
+ }
+}

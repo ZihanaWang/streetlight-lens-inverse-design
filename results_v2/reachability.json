@@ -1,0 +1,23 @@
+{
+ "n_random_targets": 20000,
+ "ranges": {
+  "L_ave": [
+   0.75,
+   1.1
+  ],
+  "U0": [
+   0.52,
+   0.65
+  ],
+  "U_l": [
+   0.69,
+   0.85
+  ]
+ },
+ "frac_beyond_3sd": 0.3328,
+ "frac_beyond_2sd": 0.43895,
+ "frac_beyond_3sd_per_metric": 0.24665,
+ "in_range_targets_beyond_3sd": 0,
+ "n_in_range_targets": 68,
+ "rule": "euclidean distance in units of GP residual SD to the closest of the GP-predicted metrics of the 200,000 parameter combinations (GP fit on all 496, no simulations). per_metric uses the largest single-metric difference"
+}
